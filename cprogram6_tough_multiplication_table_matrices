@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main() {
+    int number, rows, i;
+
+    // Prompt user for the base number
+    printf("Enter the number: ");
+    scanf("%d", &number);
+
+    // Prompt user for the number of rows
+    printf("Enter the number of rows: ");
+    scanf("%d", &rows);
+
+    printf("\nMultiplication Table for %d:\n", number);
+
+    // Loop from 1 to the specified number of rows
+    for (i = 1; i <= rows; i++) {
+        // Calculate and print the result
+        printf("%d x %d = %d\n", number, i, number * i);
+    }
+
+    return 0;
+}
