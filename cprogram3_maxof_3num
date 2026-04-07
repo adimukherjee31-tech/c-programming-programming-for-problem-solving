@@ -1,0 +1,42 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+/*Write a program for finding the max and min from the three numbers*/
+#include <stdio.h>
+
+int main() {
+    int num1, num2, num3, max, min;
+
+    // Prompt user for three numbers
+    printf("Enter three integers: ");
+    scanf("%d %d %d", &num1, &num2, &num3);
+
+    // Finding the Maximum
+    if (num1 >= num2 && num1 >= num3) {
+        max = num1;
+    } else if (num2 >= num3) {
+        max = num2;
+    } else {
+        max = num3;
+    }
+
+    // Finding the Minimum
+    if (num1 <= num2 && num1 <= num3) {
+        min = num1;
+    } else if (num2 <= num3) {
+        min = num2;
+    } else {
+        min = num3;
+    }
+
+    // Print the results
+    printf("Maximum: %d\n", max);
+    printf("Minimum: %d\n", min);
+
+    return 0;
+}
