@@ -1,0 +1,41 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+/* 
+Write a simple program that converts one given data type to another using auto conversion and
+casting. Take the values from standard input. 
+*/
+#include <stdio.h>
+
+int main() {
+    int intNum;
+    float floatNum;
+
+    // Taking values from standard input
+    printf("Enter an integer: ");
+    scanf("%d", &intNum);
+    printf("Enter a floating-point number: ");
+    scanf("%f", &floatNum);
+
+    // 1. Auto Conversion (Implicit)
+    // The compiler automatically converts the float to an int (truncating decimals)
+    int autoConverted = floatNum; 
+    printf("\n[Auto Conversion] Float %.2f to Int: %d\n", floatNum, autoConverted);
+
+    // 2. Manual Casting (Explicit)
+    // The programmer forces the int to be treated as a float using (float)
+    float manualCasted = (float)intNum; 
+    printf("[Manual Casting] Int %d to Float: %.2f\n", intNum, manualCasted);
+
+    // 3. Mixed Expression Example
+    // intNum is promoted to float automatically for the addition
+    float sum = intNum + floatNum;
+    printf("[Expression] Sum of %d and %.2f (Implicit promotion): %.2f\n", intNum, floatNum, sum);
+
+    return 0;
+}
