@@ -1,0 +1,44 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+/*Write the program for the simple, compound interest.*/
+#include <stdio.h>
+#include <math.h> // Required for the pow() function used in compound interest
+
+int main() {
+    float principal, rate, time, SI, CI, amount;
+
+    // Input data from the user
+    printf("Enter Principal amount: ");
+    scanf("%f", &principal);
+
+    printf("Enter annual Interest Rate (in percentage): ");
+    scanf("%f", &rate);
+
+    printf("Enter Time (in years): ");
+    scanf("%f", &time);
+
+    // Formula for Simple Interest: SI = (P * R * T) / 100
+    SI = (principal * rate * time) / 100;
+
+    /* 
+       Formula for Compound Interest:
+       Amount = P * (1 + R/100)^T
+       CI = Amount - Principal
+    */
+    amount = principal * pow((1 + rate / 100), time);
+    CI = amount - principal;
+
+    // Output the results
+    printf("\n--- Calculation Results ---\n");
+    printf("Simple Interest: %.2f\n", SI);
+    printf("Compound Interest: %.2f\n", CI);
+    printf("Total Amount (Compound): %.2f\n", amount);
+
+    return 0;
+}
