@@ -1,0 +1,81 @@
+#include <stdio.h>
+
+/**
+ * This program demonstrates all categories of operators in C:
+ * Arithmetic, Relational, Logical, Bitwise, Assignment, 
+ * Increment/Decrement, and Miscellaneous.
+ */
+int main() {
+    int a, b;
+
+    // Reading operand values from standard input
+    printf("Enter two integers (a and b): ");
+    if (scanf("%d %d", &a, &b) != 2) {
+        printf("Invalid input.\n");
+        return 1;
+    }
+
+    printf("\n--- Results of All C Operators ---\n");
+
+    // 1. Arithmetic Operators
+    printf("\n[Arithmetic Operators]\n");
+    printf("Addition (a + b): %d\n", a + b);
+    printf("Subtraction (a - b): %d\n", a - b);
+    printf("Multiplication (a * b): %d\n", a * b);
+    printf("Division (a / b): %d\n", a / b);
+    printf("Modulus (a %% b): %d\n", a % b);
+
+    // 2. Relational Operators (Returns 1 for true, 0 for false)
+    printf("\n[Relational Operators]\n");
+    printf("Equal to (a == b): %d\n", a == b);
+    printf("Not equal to (a != b): %d\n", a != b);
+    printf("Greater than (a > b): %d\n", a > b);
+    printf("Less than (a < b): %d\n", a < b);
+    printf("Greater than or equal to (a >= b): %d\n", a >= b);
+    printf("Less than or equal to (a <= b): %d\n", a <= b);
+
+    // 3. Logical Operators
+    printf("\n[Logical Operators]\n");
+    printf("Logical AND (a && b): %d\n", a && b);
+    printf("Logical OR (a || b): %d\n", a || b);
+    printf("Logical NOT (!a): %d\n", !a);
+
+    // 4. Bitwise Operators
+    printf("\n[Bitwise Operators]\n");
+    printf("Bitwise AND (a & b): %d\n", a & b);
+    printf("Bitwise OR (a | b): %d\n", a | b);
+    printf("Bitwise XOR (a ^ b): %d\n", a ^ b);
+    printf("Bitwise NOT (~a): %d\n", ~a);
+    printf("Left Shift (a << 1): %d\n", a << 1);
+    printf("Right Shift (a >> 1): %d\n", a >> 1);
+
+    // 5. Increment and Decrement Operators
+    printf("\n[Increment/Decrement Operators]\n");
+    int temp_a = a;
+    printf("Original a: %d\n", temp_a);
+    printf("Post-increment (temp_a++): %d\n", temp_a++);
+    printf("Value after Post-increment: %d\n", temp_a);
+    printf("Pre-increment (++temp_a): %d\n", ++temp_a);
+    
+    int temp_b = b;
+    printf("Original b: %d\n", temp_b);
+    printf("Post-decrement (temp_b--): %d\n", temp_b--);
+    printf("Value after Post-decrement: %d\n", temp_b);
+    printf("Pre-decrement (--temp_b): %d\n", --temp_b);
+
+    // 6. Assignment Operators
+    printf("\n[Assignment Operators]\n");
+    int c = a;
+    printf("Initial c = a: %d\n", c);
+    c += b; printf("Add and Assign (c += b): %d\n", c);
+    c -= b; printf("Subtract and Assign (c -= b): %d\n", c);
+    c *= b; printf("Multiply and Assign (c *= b): %d\n", c);
+    c /= b; printf("Divide and Assign (c /= b): %d\n", c);
+
+    // 7. Miscellaneous Operators
+    printf("\n[Miscellaneous Operators]\n");
+    printf("Size of int (sizeof): %lu bytes\n", sizeof(a));
+    printf("Conditional/Ternary: Max is %d\n", (a > b) ? a : b);
+
+    return 0;
+}
