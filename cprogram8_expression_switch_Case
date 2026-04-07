@@ -1,0 +1,54 @@
+/*Write a C program, which takes two integer operands and one operator from the user, performs
+the operation and then prints the result. (Consider the operators +,-,*, /, % and use Switch
+Statement) */
+#include <stdio.h>
+
+int main() {
+    int num1, num2, result;
+    char op;
+
+    // Input two integer operands
+    printf("Enter two integers: ");
+    scanf("%d %d", &num1, &num2);
+
+    // Input one arithmetic operator
+    printf("Enter an operator (+, -, *, /, %%): ");
+    scanf(" %c", &op); // Space before %c handles leftover newline characters
+
+    // Perform operation using Switch Statement
+    switch (op) {
+        case '+':
+            result = num1 + num2;
+            printf("Result: %d + %d = %d\n", num1, num2, result);
+            break;
+        case '-':
+            result = num1 - num2;
+            printf("Result: %d - %d = %d\n", num1, num2, result);
+            break;
+        case '*':
+            result = num1 * num2;
+            printf("Result: %d * %d = %d\n", num1, num2, result);
+            break;
+        case '/':
+            if (num2 != 0) {
+                result = num1 / num2;
+                printf("Result: %d / %d = %d\n", num1, num2, result);
+            } else {
+                printf("Error: Division by zero is not allowed.\n");
+            }
+            break;
+        case '%':
+            if (num2 != 0) {
+                result = num1 % num2;
+                printf("Result: %d %% %d = %d\n", num1, num2, result);
+            } else {
+                printf("Error: Modulo by zero is not allowed.\n");
+            }
+            break;
+        default:
+            printf("Error: Invalid operator.\n");
+            break;
+    }
+
+    return 0;
+}
