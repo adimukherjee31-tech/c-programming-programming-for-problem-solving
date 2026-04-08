@@ -1,0 +1,61 @@
+/*Write a C program to merge two files into a third file (i.e., the contents of the first file followed
+by those of the second are put in the third file). 
+*/
+/* Steps to Run on OnlineGDB
+Create Source Files: Before running the code, click the "New File" icon (top left) in OnlineGDB twice to create two text files (e.g., file1.txt and file2.txt) and add some text to them.
+Paste and Run: Copy the code above into the main.c tab and click the green Run button.
+Input Names: When prompted in the console, type the exact names of the files you created (e.g., file1.txt, file2.txt) and a name for the new merged file (e.g., merged.txt).
+Verify: After the "success" message, look for the newly created third file in the file explorer on the left to see the combined content */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *fs1, *fs2, *ft;
+    char ch, file1[20], file2[20], file3[20];
+
+    // Get file names from user
+    printf("Enter name of first file: ");
+    scanf("%s", file1);
+    printf("Enter name of second file: ");
+    scanf("%s", file2);
+    printf("Enter name of file to merge into: ");
+    scanf("%s", file3);
+
+    // Open source files in read mode
+    fs1 = fopen(file1, "r");
+    fs2 = fopen(file2, "r");
+
+    if (fs1 == NULL || fs2 == NULL) {
+        perror("Error opening source files");
+        exit(EXIT_FAILURE);
+    }
+
+    // Open target file in write mode
+    ft = fopen(file3, "w");
+    if (ft == NULL) {
+        perror("Error opening target file");
+        fclose(fs1);
+        fclose(fs2);
+        exit(EXIT_FAILURE);
+    }
+
+    // Copy contents of first file to target
+    while ((ch = fgetc(fs1)) != EOF) {
+        fputc(ch, ft);
+    }
+
+    // Copy contents of second file to target
+    while ((ch = fgetc(fs2)) != EOF) {
+        fputc(ch, ft);
+    }
+
+    printf("Files merged successfully into %s\n", file3);
+
+    // Close all opened files
+    fclose(fs1);
+    fclose(fs2);
+    fclose(ft);
+
+    return 0;
+}
