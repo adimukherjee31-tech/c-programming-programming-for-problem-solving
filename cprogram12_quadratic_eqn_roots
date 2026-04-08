@@ -1,1 +1,22 @@
 
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    double a, b, c, disc, r1, r2;
+    printf("Enter a, b, c: ");
+    scanf("%lf %lf %lf", &a, &b, &c);
+    disc = b * b - 4 * a * c;
+
+    if (disc > 0) { // Real and different
+        r1 = (-b + sqrt(disc)) / (2 * a);
+        r2 = (-b - sqrt(disc)) / (2 * a);
+        printf("Roots: %.2lf, %.2lf\n", r1, r2);
+    } else if (disc == 0) { // Real and equal
+        r1 = -b / (2 * a);
+        printf("Root: %.2lf\n", r1);
+    } else { // Imaginary
+        printf("Roots: %.2lf+%.2lfi, %.2lf-%.2lfi\n", -b/(2*a), sqrt(-disc)/(2*a), -b/(2*a), sqrt(-disc)/(2*a));
+    }
+    return 0;
+}
