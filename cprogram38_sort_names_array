@@ -1,0 +1,40 @@
+/*Write a C program that sorts a given array of names */
+/* Key Components:
+qsort(): This built-in quicksort function provides a high-performance way to sort arrays without writing a manual sorting algorithm like bubble sort.
+strcmp(): Defined in <string.h>, this function compares two strings lexicographically. It returns a value < 0 if the first string comes before the second, 0 if they are identical, and > 0 if it comes after.
+Comparison Function: To use qsort() on strings, you must define a comparator function that casts void pointers to the correct string pointer type.
+Alternative Approaches: For simple learning purposes, names can also be sorted using Selection Sort or Bubble Sort, where strcpy() is used to swap the names within a 2D character */ 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+// Comparison function for qsort
+int compareNames(const void *a, const void *b) {
+    // Cast arguments to pointer-to-pointer-to-char for string comparison
+    return strcmp(*(const char **)a, *(const char **)b);
+}
+
+int main() {
+    // Initialize an array of names
+    const char *names[] = {
+        "Zelda", "Alice", "Charlie", "Bob", "Yara", "Xavier"
+    };
+    
+    // Calculate the number of names in the array
+    int numNames = sizeof(names) / sizeof(names[0]);
+
+    printf("Original order:\n");
+    for (int i = 0; i < numNames; i++) {
+        printf("%s\n", names[i]);
+    }
+
+    // Sort the names using the standard library qsort function
+    qsort(names, numNames, sizeof(const char *), compareNames);
+
+    printf("\nSorted alphabetical order:\n");
+    for (int i = 0; i < numNames; i++) {
+        printf("%s\n", names[i]);
+    }
+
+    return 0;
+}
