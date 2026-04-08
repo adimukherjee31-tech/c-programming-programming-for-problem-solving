@@ -1,0 +1,65 @@
+/* Write a C program that implements the Bubble sort method to sort a given list of
+f. integers in ascending order*/
+
+#include <stdio.h>
+#include <stdbool.h>
+
+/**
+ * Implements the Bubble Sort algorithm to sort an array of integers 
+ * in ascending order.
+ * Reference: GeeksforGeeks C Bubble Sort Guide
+ */
+void bubbleSort(int arr[], int n) {
+    int i, j, temp;
+    bool swapped;
+    
+    // Outer loop for each pass through the list
+    for (i = 0; i < n - 1; i++) {
+        swapped = false;
+        
+        // Inner loop to compare adjacent elements
+        // The last i elements are already in place after i passes
+        for (j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap arr[j] and arr[j+1]
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+                swapped = true;
+            }
+        }
+        
+        // Optimization: If no two elements were swapped by inner loop, 
+        // then the array is already sorted.
+        if (swapped == false)
+            break;
+    }
+}
+
+int main() {
+    int n, i;
+
+    // Input the number of elements
+    printf("Enter number of elements: ");
+    if (scanf("%d", &n) != 1) return 1;
+
+    int arr[n];
+
+    // Input the elements of the list
+    printf("Enter %d integers:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Call the bubbleSort function
+    bubbleSort(arr, n);
+
+    // Print the sorted list
+    printf("Sorted list in ascending order:\n");
+    for (i = 0; i < n; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
