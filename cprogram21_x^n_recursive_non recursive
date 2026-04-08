@@ -1,0 +1,62 @@
+/* Write C programs that use both recursive and non-recursive functions To find x^n */
+/*This C program calculates 
+ (base raised to the power of exponent) using both recursive and non-recursive (iterative) methods. The recursive method breaks the problem into 
+
+, while the non-recursive method uses a for loop to multiply the base 
+ times. */
+/*Explanation of Approaches
+Recursive Function (power_recursive):
+Base Case: If exp is 0, it returns 1 (since 
+
+).
+Recursive Step: If exp > 0, it returns base * power_recursive(base, exp - 1).
+Non-Recursive Function (power_non_recursive):
+Initializes result to 1.
+Uses a for loop to multiply the result by the base exp times */
+
+#include <stdio.h>
+
+// Function prototypes
+long power_recursive(int base, int exp);
+long power_non_recursive(int base, int exp);
+
+int main() {
+    int base, exp;
+    long rec_result, non_rec_result;
+
+    printf("Enter base (x): ");
+    scanf("%d", &base);
+    printf("Enter exponent (n): ");
+    scanf("%d", &exp);
+
+    if (exp < 0) {
+        printf("Exponent should be non-negative.\n");
+    } else {
+        // Recursive Call
+        rec_result = power_recursive(base, exp);
+        printf("Recursive result: %d^%d = %ld\n", base, exp, rec_result);
+
+        // Non-Recursive (Iterative) Call
+        non_rec_result = power_non_recursive(base, exp);
+        printf("Non-recursive result: %d^%d = %ld\n", base, exp, non_rec_result);
+    }
+
+    return 0;
+}
+
+// Recursive function to find x^n
+long power_recursive(int base, int exp) {
+    if (exp == 0)
+        return 1;
+    else
+        return base * power_recursive(base, exp - 1);
+}
+
+// Non-recursive (iterative) function to find x^n
+long power_non_recursive(int base, int exp) {
+    long result = 1;
+    for (int i = 0; i < exp; i++) {
+        result *= base;
+    }
+    return result;
+}
