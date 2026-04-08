@@ -1,0 +1,25 @@
+/* Recursive To find the GCD (greatest common divisor) of two given integers.  using recursive functions */
+/*To find the Greatest Common Divisor (GCD) of two integers in C, you can use the Euclidean algorithm, which is highly efficient. A recursive approach calls the function itself, replacing the larger number with the remainder of the larger divided by the smaller. A non-recursive (iterative) approach uses a while loop to repeatedly subtract or use the modulo operator until one number becomes zero. */
+/*This program utilizes the Euclidean algorithm (a % b) recursively to find the GCD */
+/*Key Differences
+Recursive GCD: Usually more elegant code, but can consume more stack memory for very large numbers.
+Iterative GCD( non recursive: More memory-efficient, generally faster for very large inputs.
+Time Complexity: Both approaches using the modulo operator have a logarithmic time complexity */
+#include <stdio.h>
+
+// Recursive function to find GCD
+int gcd_recursive(int a, int b) {
+    if (b != 0)
+        return gcd_recursive(b, a % b); // Recursive call
+    else
+        return a; // Base case
+}
+
+int main() {
+    int n1, n2;
+    printf("Enter two positive integers: ");
+    scanf("%d %d", &n1, &n2);
+    
+    printf("GCD (%d, %d) = %d\n", n1, n2, gcd_recursive(n1, n2));
+    return 0;
+}
