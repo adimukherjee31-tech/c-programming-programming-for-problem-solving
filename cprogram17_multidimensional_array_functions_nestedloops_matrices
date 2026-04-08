@@ -1,0 +1,64 @@
+/*Write a C program that uses functions to perform the following:
+d. Addition of Two Matrices
+e. Multiplication of Two Matrices
+f. Transpose of a matrix with memory dynamically allocated for the new matrix as row and column
+counts may not be the same
+*/
+#include <stdio.h>
+#include <stdlib.h>
+
+// d. Function for Addition of Two Matrices
+void addMatrices(int r, int c, int a[r][c], int b[r][c], int sum[r][c]) {
+    for (int i = 0; i < r; i++)
+        for (int j = 0; j < c; j++)
+            sum[i][j] = a[i][j] + b[i][j];
+}
+
+// e. Function for Multiplication of Two Matrices
+void multiplyMatrices(int r1, int c1, int c2, int a[r1][c1], int b[c1][c2], int prod[r1][c2]) {
+    for (int i = 0; i < r1; i++) {
+        for (int j = 0; j < c2; j++) {
+            prod[i][j] = 0;
+            for (int k = 0; k < c1; k++)
+                prod[i][j] += a[i][k] * b[k][j];
+        }
+    }
+}
+
+// f. Function for Transpose with Dynamic Memory Allocation
+int** transposeMatrix(int r, int c, int matrix[r][c]) {
+    // Dynamic allocation for the new matrix (size c x r)
+    int **transposed = (int **)malloc(c * sizeof(int *));
+    for (int i = 0; i < c; i++) {
+        transposed[i] = (int *)malloc(r * sizeof(int));
+    }
+
+    for (int i = 0; i < r; i++) {
+        for (int j = 0; j < c; j++) {
+            transposed[j][i] = matrix[i][j];
+        }
+    }
+    return transposed;
+}
+
+int main() {
+    int r = 2, c = 3;
+    int a[2][3] = {{1, 2, 3}, {4, 5, 6}};
+    int b[2][3] = {{7, 8, 9}, {1, 2, 3}};
+    int sum[2][3], product[2][2];
+
+    // Addition
+    addMatrices(r, c, a, b, sum);
+
+    // Transpose of 'a' (will be 3x2)
+    int **trans = transposeMatrix(r, c, a);
+
+    // Multiplication of 'a' (2x3) and 'trans' (3x2)
+    multiplyMatrices(2, 3, 2, a, trans, product);
+
+    // Free dynamic memory
+    for (int i = 0; i < c; i++) free(trans[i]);
+    free(trans);
+
+    return 0;
+}
