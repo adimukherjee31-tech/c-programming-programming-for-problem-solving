@@ -1,0 +1,57 @@
+/*Write a C program to count the number of times a character occurs in a text file. The file name
+and the character are supplied as command line arguments.*/
+/* type name of file and character you wanna count in command line arguments */
+/* make charactercount.txt write some shit and eexecute code */
+/*Steps to Run on OnlineGDB
+Create a Text File: In the OnlineGDB editor, click the "New File" icon, name it input.txt, and add some text.
+Paste the Code: Paste the C code above into the main.c file.
+Set Command Line Arguments:
+Click on "Command Line Arguments" at the bottom of the editor.
+Enter: input.txt e (replace e with the character you want to count).
+Run: Click the "Run" button to see the results in the console */
+/* Note . How to provide arguments in OnlineGDB
+Look at the top right of the code editor window for a button labeled "Command Line Arguments".
+
+Click it, and a small text box will appear.
+
+Type the name of a file and the character you want to search for. For example:
+main.c i
+(This tells the program to open its own source code and count how many times the letter 'i' appears).
+
+Now, click Run. */
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+    // Check if correct number of arguments are provided
+    if (argc != 3) {
+        printf("Usage: %s <filename> <character>\n", argv[0]);
+        return 1;
+    }
+
+    char *filename = argv[1];
+    char target = argv[2][0]; // Take the first character of the second argument
+    FILE *file = fopen(filename, "r");
+    
+    // Check if file exists
+    if (file == NULL) {
+        printf("Error: Could not open file %s\n", filename);
+        return 1;
+    }
+
+    int count = 0;
+    char ch;
+
+    // Read file character by character until EOF
+    while ((ch = fgetc(file)) != EOF) {
+        if (ch == target) {
+            count++;
+        }
+    }
+
+    printf("The character '%c' occurs %d times in %s.\n", target, count, filename);
+
+    fclose(file);
+    return 0;
+}
+
