@@ -1,0 +1,76 @@
+/* Write a C program that does the following:
+It should first create a binary file and store 10 integers, where the file name and 10 values are
+given in the command line. (hint: convert the strings using atoi function)
+Now the program asks for an index and a value from the user and the value at that index should
+be changed to the new value in the file. (hint: use fseek function)
+The program should then read all 10 values and print them back */
+/* Execution Instructions for OnlineGDB
+Paste the code into the OnlineGDB C Compiler.
+Click "Command Line Arguments" at the bottom of the editor.
+Enter: data.bin 10 20 30 40 50 60 70 80 90 100
+Press Run.
+Follow the prompts in the terminal to enter your index and new value */
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[]) {
+    // Expecting: program_name, file_name, and 10 integers (total 12 arguments)
+    if (argc != 12) {
+        printf("Usage: %s <filename> <int1> <int2> ... <int10>\n", argv[0]);
+        return 1;
+    }
+
+    char *filename = argv[1];
+    int values[10];
+
+    // 1. Convert command line arguments to integers using atoi and store them
+    for (int i = 0; i < 10; i++) {
+        values[i] = atoi(argv[i + 2]);
+    }
+
+    // 2. Create binary file and write the 10 integers
+    FILE *fp = fopen(filename, "wb");
+    if (fp == NULL) {
+        perror("Error opening file for writing");
+        return 1;
+    }
+    fwrite(values, sizeof(int), 10, fp);
+    fclose(fp);
+
+    // 3. Ask user for index and new value to update
+    int index, newValue;
+    printf("Enter an index (0-9) to modify: ");
+    scanf("%d", &index);
+    printf("Enter the new integer value: ");
+    scanf("%d", &newValue);
+
+    if (index < 0 || index > 9) {
+        printf("Invalid index! Must be between 0 and 9.\n");
+        return 1;
+    }
+
+    // 4. Use fseek to update the specific value in the binary file
+    // Open in "rb+" mode to allow reading and writing without destroying existing data
+    fp = fopen(filename, "rb+");
+    if (fp == NULL) {
+        perror("Error opening file for modification");
+        return 1;
+    }
+
+    // Seek to the exact byte position of the index
+    fseek(fp, index * sizeof(int), SEEK_SET);
+    fwrite(&newValue, sizeof(int), 1, fp);
+    
+    // 5. Read all 10 values back and print them
+    rewind(fp); // Go back to the start of the file
+    int finalValues[10];
+    fread(finalValues, sizeof(int), 10, fp);
+
+    printf("\nUpdated values in the file:\n");
+    for (int i = 0; i < 10; i++) {
+        printf("Index %d: %d\n", i, finalValues[i]);
+    }
+
+    fclose(fp);
+    return 0;
+}
