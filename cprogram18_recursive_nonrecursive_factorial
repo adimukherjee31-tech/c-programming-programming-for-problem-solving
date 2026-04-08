@@ -1,0 +1,59 @@
+/* Write C programs that use both recursive and non-recursive functions
+h. To find the factorial of a given integer. */
+/*This program handles non-negative integers. It includes logic to manage the base case where the factorial of 0 or 1 is defined as 1. */
+/*Key Differences Between the Two Methods
+Recursive Function: The function calls itself progressively with smaller values (
+
+) until it reaches the base case of 1. While concise, it uses more memory because each call adds a new frame to the function call stack.
+Non-Recursive Function: This approach uses a simple for or while loop to repeatedly multiply values. It is generally more memory-efficient as it avoids the overhead of multiple function calls.
+Data Types: The use of unsigned long long allows the program to handle larger results, as factorials grow rapidly. For even larger results up to 
+
+, some developers prefer the size_t */
+#include <stdio.h>
+
+/* Function Prototypes */
+unsigned long long factorial_recursive(int n);
+unsigned long long factorial_non_recursive(int n);
+
+int main() {
+    int n;
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    /* Check if the user entered a negative number */
+    if (n < 0) {
+        printf("Error! Factorial of a negative number doesn't exist.\n");
+    } else {
+        /* Call recursive function */
+        printf("Factorial (Recursive) of %d = %llu\n", n, factorial_recursive(n));
+
+        /* Call non-recursive function */
+        printf("Factorial (Non-Recursive) of %d = %llu\n", n, factorial_non_recursive(n));
+    }
+
+    return 0;
+}
+
+/**
+ * Recursive function to find the factorial of a number.
+ * It multiplies n with the result of calling itself with n-1.
+ */
+unsigned long long factorial_recursive(int n) {
+    if (n == 0 || n == 1) { // Base Case
+        return 1;
+    } else {
+        return n * factorial_recursive(n - 1); // Recursive Call
+    }
+}
+
+/**
+ * Non-recursive (Iterative) function to find the factorial of a number.
+ * It uses a loop to multiply integers from 1 up to n.
+ */
+unsigned long long factorial_non_recursive(int n) {
+    unsigned long long fact = 1;
+    for (int i = 1; i <= n; i++) {
+        fact *= i;
+    }
+    return fact;
+}
