@@ -1,0 +1,50 @@
+/*Write a function to compute mean, variance, Standard Deviation, sorting of n elements in a
+single dimension array. 
+*/
+#include <stdio.h>
+
+int main() {
+    int n, i, min, max, sum = 0;
+    float average;
+
+    // Prompt user for the size of the array
+    printf("Enter the number of elements in the array: ");
+    if (scanf("%d", &n) != 1 || n <= 0) {
+        printf("Invalid array size.\n");
+        return 1;
+    }
+
+    int arr[n];
+
+    // Input array elements
+    printf("Enter %d integers:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Initialize min, max, and sum with the first element
+    min = arr[0];
+    max = arr[0];
+    sum = arr[0];
+
+    // Traverse the array to find min, max, and sum
+    for (i = 1; i < n; i++) {
+        if (arr[i] < min) {
+            min = arr[i]; // Update minimum
+        }
+        if (arr[i] > max) {
+            max = arr[i]; // Update maximum
+        }
+        sum += arr[i]; // Accumulate sum for average
+    }
+
+    // Calculate the average (cast sum to float for precision)
+    average = (float)sum / n;
+
+    // Display results
+    printf("\nMinimum: %d\n", min);
+    printf("Maximum: %d\n", max);
+    printf("Average: %.2f\n", average);
+
+    return 0;
+}
