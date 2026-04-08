@@ -1,0 +1,47 @@
+/*Write a C program which copies one file to another, replacing all lowercase characters with
+their uppercase equivalents */
+/* just make 2 files source.txt and destination.txt, new file option at the top near run button write some shit  in the files */
+/*This C program uses the toupper() function from ctype.h to convert each character from a source file and save it to a destination file. You can run this code directly in the OnlineGDB C Compiler. */
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *sourceFile, *destFile;
+    char sourceName[100], destName[100];
+    int ch;
+
+    // Get filenames from user
+    printf("Enter source file name: ");
+    scanf("%s", sourceName);
+    printf("Enter destination file name: ");
+    scanf("%s", destName);
+
+    // Open source file for reading
+    sourceFile = fopen(sourceName, "r");
+    if (sourceFile == NULL) {
+        printf("Error: Could not open source file %s\n", sourceName);
+        return 1;
+    }
+
+    // Open destination file for writing
+    destFile = fopen(destName, "w");
+    if (destFile == NULL) {
+        printf("Error: Could not create destination file %s\n", destName);
+        fclose(sourceFile);
+        return 1;
+    }
+
+    // Read characters, convert to uppercase, and write to destination
+    while ((ch = fgetc(sourceFile)) != EOF) {
+        fputc(toupper(ch), destFile);
+    }
+
+    printf("File copied successfully with uppercase conversion.\n");
+
+    // Close both files
+    fclose(sourceFile);
+    fclose(destFile);
+
+    return 0;
+}
