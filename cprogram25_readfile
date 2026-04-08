@@ -1,0 +1,36 @@
+/*Write a C program to display the contents of a file to standard output device*/
+/* 2. How to Run on OnlineGDB
+Because OnlineGDB runs on a remote server, your program cannot access files on your local computer directly. You must add the file to the online project: 
+Create the code: Paste the C code above into the main editor window.
+Add a Data File: Click the "New File" icon (usually a plus sign or page icon) next to the Run button.
+Name the File: Name it exactly data.txt to match the code above.
+Enter Content: Type or paste the text you want to display into this new data.txt tab.
+Run: Select "C" as the language from the top-right dropdown and click the Run button. The file's content will appear in the bottom console */
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    FILE *fptr;
+    char filename[] = "data.txt";
+    char ch;
+
+    // Open file in read mode ("r")
+    fptr = fopen(filename, "r");
+
+    // Check if the file exists and opened successfully
+    if (fptr == NULL) {
+        printf("Error: Could not open file %s\n", filename);
+        return 1;
+    }
+
+    // Read characters until End of File (EOF)
+    while ((ch = fgetc(fptr)) != EOF) {
+        // Display each character to the standard output (console)
+        putchar(ch);
+    }
+
+    // Close the file to free resources
+    fclose(fptr);
+
+    return 0;
+}
