@@ -1,0 +1,30 @@
+/*Write a program through a pointer variable to sum of n elements from an array. */
+/* pointer dereferencing*/
+#include <stdio.h>
+
+int main() {
+    int n, i, sum = 0;
+    int arr[100];
+    int *ptr;
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    printf("Enter %d elements:\n", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    // Initialize pointer to point to the first element of the array
+    ptr = arr; 
+
+    // Traverse array and calculate sum using the pointer
+    for (i = 0; i < n; i++) {
+        sum += *ptr; // Dereference pointer to get the value
+        ptr++;       // Increment pointer to point to the next element
+    }
+
+    printf("Sum of the elements = %d\n", sum);
+
+    return 0;
+}
