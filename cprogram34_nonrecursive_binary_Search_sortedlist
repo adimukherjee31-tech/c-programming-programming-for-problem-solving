@@ -1,0 +1,61 @@
+/* Write a C program that uses non recursive function to search for a Key value in a given
+ sorted list of integers using binary search method. 
+*/
+#include <stdio.h>
+
+/**
+ * Iterative (non-recursive) function for Binary Search.
+ * Returns the index of the key if found, otherwise returns -1.
+ */
+int binarySearch(int arr[], int size, int key) {
+    int low = 0;
+    int high = size - 1;
+
+    while (low <= high) {
+        // Calculate mid; using low + (high - low) / 2 prevents potential integer overflow
+        int mid = low + (high - low) / 2;
+
+        // Check if key is present at mid
+        if (arr[mid] == key) {
+            return mid;
+        }
+
+        // If key is larger, ignore the left half
+        if (arr[mid] < key) {
+            low = mid + 1;
+        } 
+        // If key is smaller, ignore the right half
+        else {
+            high = mid - 1;
+        }
+    }
+
+    // Element not found
+    return -1;
+}
+
+int main() {
+    int n, key, result;
+
+    printf("Enter number of elements in the sorted list: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d sorted integers:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the key value to search: ");
+    scanf("%d", &key);
+
+    result = binarySearch(arr, n, key);
+
+    if (result == -1) {
+        printf("Key %d not found in the list.\n", key);
+    } else {
+        printf("Key %d found at index %d.\n", key, result);
+    }
+
+    return 0;
+}
