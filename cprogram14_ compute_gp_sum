@@ -1,0 +1,29 @@
+/* C program 13: Write a C program to read in two numbers, x and n, and then compute the sum of this geometric
+progression: 1+x+x^2+x^3+………….+x^n. For example: if n is 3 and x is 5, then the program
+computes 1+5+25+125. 
+*/
+#include <stdio.h>
+#include <math.h>
+
+int main() {
+    int x, n;
+    double sum = 0;
+
+    // Read the values of x and n from the user
+    printf("Enter the value of x: ");
+    scanf("%d", &x);
+    printf("Enter the value of n: ");
+    scanf("%d", &n);
+
+    // Iteratively compute the sum of terms from x^0 to x^n
+    if (n >= 0) {
+        for (int i = 0; i <= n; i++) {
+            sum += pow(x, i);
+        }
+        printf("The sum of the geometric progression is: %.2f\n", sum);
+    } else {
+        printf("Invalid value for n. Please enter a non-negative integer.\n");
+    }
+
+    return 0;
+}
