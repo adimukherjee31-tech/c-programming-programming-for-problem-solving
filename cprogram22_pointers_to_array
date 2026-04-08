@@ -1,0 +1,38 @@
+/* Write a program for reading elements using a pointer into an array and display the values using
+the array. */
+/* Concept Explanation: Pointer Arithmetic
+The core concept used in this program is Pointer Arithmetic. In C, an array name acts as a constant pointer to its first element. 
+YouTube
+YouTube
+ +3
+Relationship: The expression arr[i] is internally handled by the compiler as *(arr + i).
+Reading (Pointers): When we use scanf("%d", ptr + i), we are passing the memory address of the 
+-th element to scanf. The compiler calculates this address by taking the base address (ptr) and adding the offset i * sizeof(int).
+Displaying (Array): Using arr[i] provides a more readable way to access those same memory locations for output. 
+This technique is fundamental to Array Traversal, which is the process of visiting every element in an array in a specific order. Using pointers for these operations is often more efficient for large datasets or multi-dimensional arrays */
+
+#include <stdio.h>
+
+int main() {
+    int n, arr[100];
+    int *ptr = arr; // Pointer points to the first element of the array
+
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    // Reading elements using a pointer
+    printf("Enter %d elements:\n", n);
+    for (int i = 0; i < n; i++) {
+        // (ptr + i) is the memory address of the i-th element
+        scanf("%d", (ptr + i)); 
+    }
+
+    // Displaying values using the array
+    printf("The elements are: ");
+    for (int i = 0; i < n; i++) {
+        // Displaying using standard array subscript notation
+        printf("%d ", arr[i]); 
+    }
+
+    return 0;
+}
