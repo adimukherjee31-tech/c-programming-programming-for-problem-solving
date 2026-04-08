@@ -1,0 +1,39 @@
+/* Write a C program that converts a number ranging from 1 to 50 to Roman equivalent */
+#include <stdio.h>
+
+/**
+ * C program to convert a number between 1 and 50 to Roman numerals.
+ * Logic: Separate the number into tens and units, then map to Roman symbols.
+ */
+void convertToRoman(int num) {
+    // Arrays for mapping digits to Roman numerals
+    // Empty strings handle cases where a digit is zero (e.g., 5 is "V", not "0V")
+    char *tens[] = {"", "X", "XX", "XXX", "XL", "L"};
+    char *ones[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+
+    if (num < 1 || num > 50) {
+        printf("Invalid input! Please enter a number between 1 and 50.\n");
+        return;
+    }
+
+    // Extract place values
+    int tens_digit = num / 10;
+    int ones_digit = num % 10;
+
+    // Output concatenated Roman equivalent
+    printf("Roman numeral: %s%s\n", tens[tens_digit], ones[ones_digit]);
+}
+
+int main() {
+    int number;
+
+    printf("Enter a number (1-50): ");
+    if (scanf("%d", &number) != 1) {
+        printf("Invalid input. Please enter an integer.\n");
+        return 1;
+    }
+
+    convertToRoman(number);
+
+    return 0;
+}
