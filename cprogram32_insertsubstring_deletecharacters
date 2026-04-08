@@ -1,0 +1,76 @@
+/* Write a C program that uses functions to perform the following operations:
+d. To insert a sub-string into a given main string from a given position.
+e. To delete n Characters from a given position in a given string. 
+*/
+/* Key Operations Explained:
+Insertion Mechanism: The function shifts all characters from the target position to the end of the string to the right by the length of the substring to avoid overwriting existing data.
+Deletion Mechanism: It skips 
+ characters starting from the specified index and shifts the subsequent characters to the left to overwrite the "deleted" section.
+Data Handling: The program uses scanf(" %[^\n]") to read strings containing spaces and ensures proper Null Termination after every modification */
+#include <stdio.h>
+#include <string.h>
+
+// Function to insert a substring into a main string at a given position
+void insertSubstring(char *mainStr, char *subStr, int pos) {
+    int mainLen = strlen(mainStr);
+    int subLen = strlen(subStr);
+
+    // Shift characters of the main string to the right to make space
+    for (int i = mainLen; i >= pos; i--) {
+        mainStr[i + subLen] = mainStr[i];
+    }
+
+    // Insert the substring characters into the created space
+    for (int i = 0; i < subLen; i++) {
+        mainStr[pos + i] = subStr[i];
+    }
+}
+
+// Function to delete n characters from a given position
+void deleteCharacters(char *str, int pos, int n) {
+    int len = strlen(str);
+
+    // Shift remaining characters to the left to fill the gap
+    for (int i = pos + n; i <= len; i++) {
+        str[i - n] = str[i];
+    }
+}
+
+int main() {
+    char mainStr[200], subStr[100];
+    int pos, n;
+
+    // Operation D: Insertion
+    printf("--- Substring Insertion ---\n");
+    printf("Enter main string: ");
+    scanf(" %[^\n]", mainStr);
+    printf("Enter substring to insert: ");
+    scanf(" %[^\n]", subStr);
+    printf("Enter position: ");
+    scanf("%d", &pos);
+    
+    if (pos >= 0 && pos <= strlen(mainStr)) {
+        insertSubstring(mainStr, subStr, pos);
+        printf("Modified string after insertion: %s\n\n", mainStr);
+    } else {
+        printf("Invalid position!\n\n");
+    }
+
+    // Operation E: Deletion
+    printf("--- Character Deletion ---\n");
+    printf("Enter the string: ");
+    scanf(" %[^\n]", mainStr);
+    printf("Enter position to start deletion: ");
+    scanf("%d", &pos);
+    printf("Enter number of characters to delete: ");
+    scanf("%d", &n);
+
+    if (pos >= 0 && (pos + n) <= strlen(mainStr)) {
+        deleteCharacters(mainStr, pos, n);
+        printf("Modified string after deletion: %s\n", mainStr);
+    } else {
+        printf("Invalid position or length!\n");
+    }
+
+    return 0;
+}
