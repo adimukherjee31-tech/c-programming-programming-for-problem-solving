@@ -1,1 +1,29 @@
+// C program  13imple program no loops no functions
+/* Write a C program to calculate the following, where x is a fractional value.
+ 1-x/2 +x^2/4-x^3/6 
+*/
+#include <stdio.h>
+
+int main() {
+    float x, result;
+
+    // Output title of the calculation
+    printf("EQUATION SERIES : 1 - x/2 + x^2/4 - x^3/6\n");
+
+    // Get the fractional value for x from the user
+    printf("ENTER VALUE OF x: ");
+    if (scanf("%f", &x) != 1) {
+        printf("Invalid input. Please enter a numerical value.\n");
+        return 1;
+    }
+
+    // Calculate the expression based on user-provided x
+    // x^2 is calculated as (x * x) and x^3 as (x * x * x)
+    result = 1 - (x / 2.0f) + (x * x / 4.0f) - (x * x * x / 6.0f);
+
+    // Print the final result formatted to 6 decimal places
+    printf("Sum of Series is: %.6f\n", result);
+
+    return 0;
+}
 
