@@ -1,0 +1,48 @@
+/* Write a C program that uses non recursive function to search for a Key value in a given list of integers using linear search method.*/
+
+#include <stdio.h>
+
+/**
+ * Performs a non-recursive linear search.
+ * @param arr The array of integers.
+ * @param n   The number of elements in the array.
+ * @param key The value to search for.
+ * @return The index of the key if found, otherwise -1.
+ */
+int linearSearch(int arr[], int n, int key) {
+    for (int i = 0; i < n; i++) {
+        // Compare current element with key
+        if (arr[i] == key) {
+            return i; // Key found, return current index
+        }
+    }
+    return -1; // Key not found after checking all elements
+}
+
+int main() {
+    int n, key, result;
+    int arr[100];
+
+    printf("Enter number of elements (max 100): ");
+    scanf("%d", &n);
+
+    printf("Enter %d integers:\n", n);
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the key value to search for: ");
+    scanf("%d", &key);
+
+    // Call the non-recursive function
+    result = linearSearch(arr, n, key);
+
+    if (result != -1) {
+        // Displaying position (index + 1) for user-friendly output
+        printf("Key %d found at position %d (index %d).\n", key, result + 1, result);
+    } else {
+        printf("Key %d not found in the list.\n", key);
+    }
+
+    return 0;
+}
