@@ -1,0 +1,46 @@
+/* Write a C program to convert a Roman numeral ranging from I to L to its decimal equivalent. */
+#include <stdio.h>
+#include <string.h>
+
+// Helper function to get value of a single Roman digit
+int romanToDecimalValue(char c) {
+    switch (c) {
+        case 'I': return 1;
+        case 'V': return 5;
+        case 'X': return 10;
+        case 'L': return 50;
+        default: return 0;
+    }
+}
+
+int main() {
+    char roman[20];
+    int decimal = 0;
+
+    printf("Enter a Roman numeral (I to L): ");
+    scanf("%s", roman);
+
+    int length = strlen(roman);
+
+    for (int i = 0; i < length; i++) {
+        int s1 = romanToDecimalValue(roman[i]);
+
+        // Look at the next character for the subtraction rule
+        if (i + 1 < length) {
+            int s2 = romanToDecimalValue(roman[i + 1]);
+
+            // If current value is less than next, subtract it
+            if (s1 < s2) {
+                decimal += (s2 - s1);
+                i++; // Skip the next character
+            } else {
+                decimal += s1;
+            }
+        } else {
+            decimal += s1;
+        }
+    }
+
+    printf("Decimal equivalent: %d\n", decimal);
+    return 0;
+}
